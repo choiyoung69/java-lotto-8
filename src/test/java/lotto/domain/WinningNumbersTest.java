@@ -1,5 +1,6 @@
 package lotto.domain;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.List;
@@ -82,4 +83,69 @@ public class WinningNumbersTest {
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
+    @DisplayName("로또 번호와 당첨번호가 6개 일치하면 LottoRank에서 FIRST가 생성된다.")
+    @Test
+    void 로또_번호와_당첨번호가_6개_일치하면_LottoRank에서_FIRST가_생성된다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6), 7);
+
+        LottoRank lottoRank = winningNumbers.checkWinningResult(lotto);
+
+        assertThat(lottoRank).isEqualTo(LottoRank.FIRST);
+    }
+
+    @DisplayName("로또 번호와 당첨번호가 5개 일치하고 보너스 번호가 일치하면 LottoRank에서 SECOND가 생성된다.")
+    @Test
+    void 로또_번호와_당첨번호가_5개_일치하고_보너스번호가_일치하면_LottoRank에서_SECOND가_생성된다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 7), 6);
+
+        LottoRank lottoRank = winningNumbers.checkWinningResult(lotto);
+
+        assertThat(lottoRank).isEqualTo(LottoRank.SECOND);
+    }
+
+    @DisplayName("로또 번호와 당첨번호가 5개 일치하면 LottoRank에서 THIRD가 생성된다.")
+    @Test
+    void 로또_번호와_당첨번호가_5개_일치하면_LottoRank에서_THIRD가_생성된다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 7, 8), 9);
+
+        LottoRank lottoRank = winningNumbers.checkWinningResult(lotto);
+
+        assertThat(lottoRank).isEqualTo(LottoRank.THIRD);
+    }
+
+    @DisplayName("로또 번호와 당첨번호가 4개 일치하면 LottoRank에서 FOURTH가 생성된다.")
+    @Test
+    void 로또_번호와_당첨번호가_4개_일치하면_LottoRank에서_FOURH가_생성된다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 7, 8), 9);
+
+        LottoRank lottoRank = winningNumbers.checkWinningResult(lotto);
+
+        assertThat(lottoRank).isEqualTo(LottoRank.FOURTH);
+    }
+
+    @DisplayName("로또 번호와 당첨번호가 3개 일치하면 LottoRank에서 FIFTH가 생성된다.")
+    @Test
+    void 로또_번호와_당첨번호가_3개_일치하면_LottoRank에서_FIFTH가_생성된다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 7, 8, 9), 10);
+
+        LottoRank lottoRank = winningNumbers.checkWinningResult(lotto);
+
+        assertThat(lottoRank).isEqualTo(LottoRank.FIFTH);
+    }
+
+    @DisplayName("로또 번호와 당첨번호가 3개 이하로 일치하면 LottoRank에서 MISS가 생성된다.")
+    @Test
+    void 로또_번호와_당첨번호가_3개_이하로_일치하면_LottoRank에서_MISS가_생성된다() {
+        Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 7, 8, 9, 10), 11);
+
+        LottoRank lottoRank = winningNumbers.checkWinningResult(lotto);
+
+        assertThat(lottoRank).isEqualTo(LottoRank.MISS);
+    }
 }
