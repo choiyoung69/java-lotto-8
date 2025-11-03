@@ -20,8 +20,6 @@ public class WinningNumbers {
         int matchCount = lotto.countMatch(numbers);
         boolean bonusMatch = lotto.containBonusNumber(bonusNumber);
 
-        System.out.println(bonusMatch);
-
         return LottoRank.calculateRank(matchCount, bonusMatch);
     }
 

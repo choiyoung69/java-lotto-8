@@ -1,11 +1,13 @@
 package lotto.controller;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 import lotto.dto.response.LottoPurchaseResponseDto;
+import lotto.dto.response.LottoResultDto;
 import lotto.service.LottoGenerateService;
 import lotto.service.LottoResultService;
 import lotto.utils.Parser;
@@ -29,12 +31,17 @@ public class LottoController {
 
     public void run() {
         Lottos lottos = buyLottos();
+
         Lotto lotto = inputWinningNumbers();
+        outputView.println();
+
         WinningNumbers winningNumbers = inputBonusNumber(lotto);
+        outputView.println();
 
         LottoResult lottoResult = lottoResultService.calculateResult(winningNumbers, lottos);
         double rateOfReturn = lottoResultService.calculateProfitRate(lottos, lottoResult);
 
+        outputView.printLottoResult(LottoResultDto.create(lottoResult, rateOfReturn));
     }
 
     private Lottos buyLottos() {
@@ -45,7 +52,7 @@ public class LottoController {
                 LottoPurchaseResponseDto lottoPurchaseDto = LottoPurchaseResponseDto.create(lottos);
                 outputView.printLottoPurchaseResult(lottoPurchaseDto);
                 return lottos;
-            } catch (Exception e) {
+            } catch (IllegalArgumentException | IllegalStateException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
@@ -56,7 +63,7 @@ public class LottoController {
             try {
                 List<Integer> parsedWinningNumbers = Parser.parseToIntegerList(inputView.inputWinningNumbers().winningNumbers());
                 return new Lotto(parsedWinningNumbers);
-            } catch (Exception e) {
+            } catch (IllegalArgumentException | IllegalStateException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
@@ -67,7 +74,7 @@ public class LottoController {
             try {
                 int bonusNumber = Parser.parseToInteger(inputView.inputBonusNumber().bonusNumber());
                 return WinningNumbers.create(lotto, bonusNumber);
-            } catch (Exception e) {
+            } catch (IllegalArgumentException | IllegalStateException e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
