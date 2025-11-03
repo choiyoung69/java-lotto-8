@@ -27,4 +27,8 @@ public enum LottoRank {
                 .findFirst()
                 .orElse(MISS);
     }
+
+    public long getPrize() {
+        return prize;
+    }
 }

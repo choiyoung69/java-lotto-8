@@ -2,7 +2,7 @@ package lotto.domain;
 
 public class LottoCount {
 
-    private static final int LOTTO_PRICE_UNIT = 1000;
+    public static final int LOTTO_PRICE_UNIT = 1000;
     private final int count;
 
     private LottoCount(int count) {

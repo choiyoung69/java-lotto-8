@@ -12,4 +12,10 @@ public class LottoResult {
     public static LottoResult create(Map<LottoRank, Long> lottoResult) {
         return new LottoResult(lottoResult);
     }
+
+    public long calculateTotalPrize() {
+        return lottoResult.entrySet().stream()
+                .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
+                .sum();
+    }
 }
