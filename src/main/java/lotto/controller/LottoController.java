@@ -2,6 +2,7 @@ package lotto.controller;
 
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
+import lotto.dto.LottoAmountDto;
 import lotto.service.LottoGenerateService;
 import lotto.service.LottoResultService;
 import lotto.utils.Parser;
@@ -22,16 +23,16 @@ public class LottoController {
     }
 
     public void run() {
-        LottoPurchaseDto lottoPurchaseDto = buyLottos();
+        LottoPurchaseResposeDto lottoPurchaseDto = buyLottos();
     }
 
-    private LottoPurchaseDto buyLottos() {
+    private LottoPurchaseResponseDto buyLottos() {
         while (true) {
             try {
                 LottoAmountDto lottoAmountDto = inputView.inputPurchaseAmount();
-                int amount = Parser.parseToInteger(lottoAmountDto.getLottoAmount());
+                int amount = Parser.parseToInteger(lottoAmountDto.amount());
                 Lottos lottos = lottoGenerateService.buyRandomLottos(amount);
-                LottoPurchaseDto lottoPurchaseDto = LottoPurchaseDto.create(amount, lottos);
+                LottoPurchaseResponseDto lottoPurchaseDto = LottoPurchaseDto.create(amount, lottos);
                 OutputView.printLottoPurchaseResult(lottoPurchaseDto);
                 return lottoPurchaseDto;
             } catch (Exception e) {
