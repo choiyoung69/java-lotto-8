@@ -11,8 +11,7 @@ import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 
 public class LottoResultService {
-    public LottoResult calculateResult(Lotto numbers, int bonusNumber, Lottos lottos) {
-        WinningNumbers winningNumbers = WinningNumbers.create(numbers, bonusNumber);
+    public LottoResult calculateResult(WinningNumbers winningNumbers, Lottos lottos) {
 
         return LottoResult.create(lottos.getLottos()
                 .stream()
