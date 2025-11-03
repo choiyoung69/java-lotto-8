@@ -32,7 +32,7 @@ public class LottoController {
             try {
                 int amount = Parser.parseToInteger(inputView.inputPurchaseAmount().amount());
                 Lottos lottos = lottoGenerateService.buyRandomLottos(amount);
-                LottoPurchaseResponseDto lottoPurchaseDto = LottoPurchaseResponseDto.create(lottos.getLottos().size(), lottos);
+                LottoPurchaseResponseDto lottoPurchaseDto = LottoPurchaseResponseDto.create(lottos);
                 OutputView.printLottoPurchaseResult(lottoPurchaseDto);
                 return lottoPurchaseDto;
             } catch (Exception e) {
