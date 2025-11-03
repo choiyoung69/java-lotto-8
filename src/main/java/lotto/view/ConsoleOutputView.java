@@ -1,7 +1,7 @@
 package lotto.view;
 
 import java.util.stream.Collectors;
-import lotto.dto.LottoPurchaseResponseDto;
+import lotto.dto.response.LottoPurchaseResponseDto;
 
 public class ConsoleOutputView implements OutputView {
 

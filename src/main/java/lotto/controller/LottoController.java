@@ -1,9 +1,9 @@
 package lotto.controller;
 
+import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.Lottos;
-import lotto.dto.LottoAmountDto;
-import lotto.dto.LottoPurchaseResponseDto;
+import lotto.dto.response.LottoPurchaseResponseDto;
 import lotto.service.LottoGenerateService;
 import lotto.service.LottoResultService;
 import lotto.utils.Parser;
@@ -27,7 +27,7 @@ public class LottoController {
 
     public void run() {
         Lottos lottoPurchaseDto = buyLottos();
-        inputWinningNumbers();
+        Lotto lotto = inputWinningNumbers();
     }
 
     private Lottos buyLottos() {
@@ -47,7 +47,8 @@ public class LottoController {
     private Lotto inputWinningNumbers() {
         while (true) {
             try {
-                inputView.inputWinningNumbers();
+                List<Integer> parsedWinningNumbers = Parser.parseToIntegerList(inputView.inputWinningNumbers().winningNumbers());
+                return new Lotto(parsedWinningNumbers);
             } catch (Exception e) {
                 System.out.println("[ERROR] " + e.getMessage());
             }
