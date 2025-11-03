@@ -1,10 +1,9 @@
-package lotto.domain.generator;
+package lotto.domain;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import lotto.domain.Lotto;
-import lotto.domain.LottoCount;
+import lotto.domain.generator.LottoGenerator;
 
 public class Lottos {
     private final List<Lotto> lottos;
