@@ -70,7 +70,7 @@ class LottoTest {
     @Test
     @DisplayName("하나도 일치하지 않으면 0을 반환한다")
     void 일치하지_않음() {
-        List<Integer> winning = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winning = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto mine = new Lotto(List.of(7, 8, 9, 10, 11, 12));
 
         int matchCount = mine.countMatch(winning);
@@ -81,7 +81,7 @@ class LottoTest {
     @Test
     @DisplayName("1개 일치하면 1을 반환한다")
     void 한개_일치() {
-        List<Integer> winning = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winning = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto mine = new Lotto(List.of(1, 7, 8, 9, 10, 11));
 
         int matchCount = mine.countMatch(winning);
@@ -92,7 +92,7 @@ class LottoTest {
     @Test
     @DisplayName("2개 일치하면 2을 반환한다")
     void 두개_일치() {
-        List<Integer> winning = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winning = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto mine = new Lotto(List.of(1, 2, 7, 8, 9, 10));
 
         int matchCount = mine.countMatch(winning);
@@ -103,7 +103,7 @@ class LottoTest {
     @Test
     @DisplayName("3개 일치하면 3을 반환한다")
     void 세개_일치() {
-        List<Integer> winning = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winning = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto mine = new Lotto(List.of(1, 2, 3, 7, 8, 9));
 
         int matchCount = mine.countMatch(winning);
@@ -114,7 +114,7 @@ class LottoTest {
     @Test
     @DisplayName("4개 일치하면 4를 반환한다")
     void 네개_일치() {
-        List<Integer> winning = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winning = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto mine = new Lotto(List.of(1, 2, 3, 4, 7, 8));
 
         int matchCount = mine.countMatch(winning);
@@ -125,7 +125,7 @@ class LottoTest {
     @Test
     @DisplayName("5개 일치하면 5를 반환한다")
     void 다섯개_일치() {
-        List<Integer> winning = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winning = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto mine = new Lotto(List.of(1, 2, 3, 4, 5, 7));
 
         int matchCount = mine.countMatch(winning);
@@ -136,7 +136,7 @@ class LottoTest {
     @Test
     @DisplayName("6개 일치하면 6를 반환한다")
     void 여섯개_일치() {
-        List<Integer> winning = List.of(1, 2, 3, 4, 5, 6);
+        Lotto winning = new Lotto(List.of(1, 2, 3, 4, 5, 6));
         Lotto mine = new Lotto(List.of(1, 2, 3, 4, 5, 6));
 
         int matchCount = mine.countMatch(winning);

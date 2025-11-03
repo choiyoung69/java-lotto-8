@@ -3,6 +3,7 @@ package lotto.service;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
@@ -10,7 +11,7 @@ import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 
 public class LottoResultService {
-    public LottoResult calculateResult(List<Integer> numbers, int bonusNumber, Lottos lottos) {
+    public LottoResult calculateResult(Lotto numbers, int bonusNumber, Lottos lottos) {
         WinningNumbers winningNumbers = WinningNumbers.create(numbers, bonusNumber);
 
         return LottoResult.create(lottos.getLottos()

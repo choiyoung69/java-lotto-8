@@ -16,9 +16,9 @@ public class Lotto {
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public int countMatch(List<Integer> winningNumbers) {
+    public int countMatch(Lotto winningNumbers) {
         return (int) numbers.stream()
-                .filter(winningNumbers::contains)
+                .filter(number -> winningNumbers.getNumbers().contains(number))
                 .count();
     }
 
