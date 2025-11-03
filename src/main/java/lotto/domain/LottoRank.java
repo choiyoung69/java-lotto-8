@@ -21,12 +21,9 @@ public enum LottoRank {
     }
 
     public static LottoRank calculateRank(int matchCount, boolean bonusMatch) {
-        if (matchCount == SECOND.matchCount && bonusMatch == SECOND.bonusMatch) {
-            return SECOND;
-        }
-
         return Arrays.stream(values())
                 .filter(rank -> rank.matchCount == matchCount)
+                .filter(rank -> rank.bonusMatch == bonusMatch)
                 .findFirst()
                 .orElse(MISS);
     }
