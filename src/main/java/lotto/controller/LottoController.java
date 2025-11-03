@@ -24,7 +24,7 @@ public class LottoController {
     }
 
     public void run() {
-        LottoPurchaseResposeDto lottoPurchaseDto = buyLottos();
+        LottoPurchaseResponseDto lottoPurchaseDto = buyLottos();
     }
 
     private LottoPurchaseResponseDto buyLottos() {
@@ -32,7 +32,7 @@ public class LottoController {
             try {
                 int amount = Parser.parseToInteger(inputView.inputPurchaseAmount().amount());
                 Lottos lottos = lottoGenerateService.buyRandomLottos(amount);
-                LottoPurchaseResponseDto lottoPurchaseDto = LottoPurchaseResponseDto.create(amount, lottos);
+                LottoPurchaseResponseDto lottoPurchaseDto = LottoPurchaseResponseDto.create(lottos.getLottos().size(), lottos);
                 OutputView.printLottoPurchaseResult(lottoPurchaseDto);
                 return lottoPurchaseDto;
             } catch (Exception e) {
