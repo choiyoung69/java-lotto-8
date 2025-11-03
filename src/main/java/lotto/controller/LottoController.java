@@ -7,6 +7,7 @@ import lotto.service.LottoGenerateService;
 import lotto.service.LottoResultService;
 import lotto.utils.Parser;
 import lotto.view.ConsoleInputVIew;
+import lotto.view.OutputView;
 
 public class LottoController {
     private final ConsoleInputVIew inputView;
@@ -33,7 +34,7 @@ public class LottoController {
                 int amount = Parser.parseToInteger(inputView.inputPurchaseAmount().amount());
                 Lottos lottos = lottoGenerateService.buyRandomLottos(amount);
                 LottoPurchaseResponseDto lottoPurchaseDto = LottoPurchaseResponseDto.create(lottos);
-                OutputView.printLottoPurchaseResult(lottoPurchaseDto);
+                outputView.printLottoPurchaseResult(lottoPurchaseDto);
                 return lottoPurchaseDto;
             } catch (Exception e) {
                 System.out.println("[ERROR] " + e.getMessage());
