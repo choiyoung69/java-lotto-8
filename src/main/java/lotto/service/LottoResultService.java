@@ -11,7 +11,7 @@ public class LottoResultService {
     public Map<LottoRank, Long> calculateResult(List<Integer> numbers, int bonusNumber, Lottos lottos) {
         WinningNumbers winningNumbers = WinningNumbers.create(numbers, bonusNumber);
 
-        return lottos.getLottos()
+        Map<LottoRank, Long> lottoResult = lottos.getLottos()
                 .stream()
                 .map(winningNumbers::checkWinningResult)
                 .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
