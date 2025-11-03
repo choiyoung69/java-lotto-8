@@ -10,17 +10,25 @@ import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 
 public class LottoResultService {
+    private static final long ZERO_COUNT = 0L;
+
     public LottoResult calculateResult(WinningNumbers winningNumbers, Lottos lottos) {
-        Map<LottoRank, Long> result = lottos.getLottos()
+        Map<LottoRank, Long> result = countWinningRanks(winningNumbers, lottos);
+        fillEmptyRanks(result);
+        return LottoResult.create(result);
+    }
+
+    private Map<LottoRank, Long> countWinningRanks(WinningNumbers winningNumbers, Lottos lottos) {
+        return lottos.getLottos()
                 .stream()
                 .map(winningNumbers::checkWinningResult)
                 .collect(Collectors.groupingBy(rank -> rank, Collectors.counting()));
+    }
 
+    private void fillEmptyRanks(Map<LottoRank, Long> result) {
         for (LottoRank rank : LottoRank.values()) {
-            result.putIfAbsent(rank, 0L);
+            result.putIfAbsent(rank, ZERO_COUNT);
         }
-
-        return LottoResult.create(result);
     }
 
     public double calculateProfitRate(Lottos lottos, LottoResult lottoResult) {
