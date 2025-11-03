@@ -20,6 +20,13 @@ public class WinningNumbers {
         return new WinningNumbers(numbers, bonusNumber);
     }
 
+    public LottoRank checkWinningResult(Lotto lotto) {
+        int matchCount = lotto.countMatch(numbers);
+        boolean bonusMatch = lotto.containBonusNumber(bonusNumber);
+
+        return LottoRank.calculateRank(matchCount, bonusMatch);
+    }
+
     private static void validate(List<Integer> numbers, int bonusNumber) {
         validateNumbersSize(numbers);
         validateOutOfRangeNumbers(numbers);

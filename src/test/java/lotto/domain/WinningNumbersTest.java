@@ -109,7 +109,7 @@ public class WinningNumbersTest {
     @Test
     void 로또_번호와_당첨번호가_5개_일치하면_LottoRank에서_THIRD가_생성된다() {
         Lotto lotto = new Lotto(List.of(1, 2, 3, 4, 5, 6));
-        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 7, 8), 9);
+        WinningNumbers winningNumbers = WinningNumbers.create(List.of(1, 2, 3, 4, 5, 7), 8);
 
         LottoRank lottoRank = winningNumbers.checkWinningResult(lotto);
 
