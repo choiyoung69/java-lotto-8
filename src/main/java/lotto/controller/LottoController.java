@@ -2,6 +2,7 @@ package lotto.controller;
 
 import java.util.List;
 import lotto.domain.Lotto;
+import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
 import lotto.dto.response.LottoPurchaseResponseDto;
@@ -27,9 +28,13 @@ public class LottoController {
     }
 
     public void run() {
-        Lottos lottoPurchaseDto = buyLottos();
+        Lottos lottos = buyLottos();
         Lotto lotto = inputWinningNumbers();
-        inputBonusNumber(lotto);
+        WinningNumbers winningNumbers = inputBonusNumber(lotto);
+
+        LottoResult lottoResult = lottoResultService.calculateResult(winningNumbers, lottos);
+        double rateOfReturn = lottoResultService.calculateProfitRate(lottos, lottoResult);
+
     }
 
     private Lottos buyLottos() {

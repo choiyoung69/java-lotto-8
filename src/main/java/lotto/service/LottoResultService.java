@@ -1,11 +1,7 @@
 package lotto.service;
 
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.domain.Lotto;
 import lotto.domain.LottoCount;
-import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
 import lotto.domain.WinningNumbers;
@@ -19,11 +15,8 @@ public class LottoResultService {
                 .collect(Collectors.groupingBy(rank -> rank, Collectors.counting())));
     }
 
-    public long calculateTotalPrize(LottoResult lottoResult) {
-        return lottoResult.calculateTotalPrize();
-    }
-
-    public double calculateProfitRate(LottoCount lottoCount, long winningAmountSum) {
-        return (double)winningAmountSum / (lottoCount.getCount() * LottoCount.LOTTO_PRICE_UNIT);
+    public double calculateProfitRate(Lottos lottos, LottoResult lottoResult) {
+        long winningAmountSum = lottoResult.calculateTotalPrize();
+        return (double) winningAmountSum / (lottos.getLottos().size() * LottoCount.LOTTO_PRICE_UNIT);
     }
 }
