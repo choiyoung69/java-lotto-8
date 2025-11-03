@@ -25,13 +25,13 @@ public class LottoCount {
 
     private static void validatePositiveAmount(int amount) {
         if(amount <= 0){
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 0원보다 커야 합니다");
+            throw new IllegalArgumentException("로또 구입 금액은 0원보다 커야 합니다");
         }
     }
 
     private static void validateLottoPriceUnit(int amount) {
         if (amount % LOTTO_PRICE_UNIT != 0) {
-            throw new IllegalArgumentException("[ERROR] 로또 구입 금액은 1000원 단위여야 합니다.");
+            throw new IllegalArgumentException("로또 구입 금액은 1000원 단위여야 합니다.");
         }
     }
 }

@@ -38,7 +38,7 @@ public class WinningNumbers {
 
     private static void validateNumbersSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
     }
 
@@ -46,26 +46,26 @@ public class WinningNumbers {
         boolean outOfRange = numbers.stream()
                 .anyMatch(number -> number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX);
         if (outOfRange) {
-            throw new IllegalArgumentException("[ERROR] 당첨 번호는 1~45 사이여야 합니다");
+            throw new IllegalArgumentException("당첨 번호는 1~45 사이여야 합니다");
         }
     }
 
     private static void validateOutOfRangeBonusNumber(int bonusNumber) {
         if (bonusNumber < 1 || bonusNumber > 45) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호는 1~45 사이여야 합니다");
+            throw new IllegalArgumentException("보너스 번호는 1~45 사이여야 합니다");
         }
     }
 
     private static void validateNoDuplicate(List<Integer> numbers, int bonusNumber) {
         validateNumberNoDuplicate(numbers);
         if (numbers.contains(bonusNumber)) {
-            throw new IllegalArgumentException("[ERROR] 보너스 번호와 로또 번호는 중복될 수 없습니다");
+            throw new IllegalArgumentException("보너스 번호와 로또 번호는 중복될 수 없습니다");
         }
     }
 
     private static void validateNumberNoDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != LOTTO_NUMBER_COUNT) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
         }
     }
 }

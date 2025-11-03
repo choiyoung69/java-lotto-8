@@ -38,19 +38,19 @@ public class Lotto {
 
     private static void validateSize(List<Integer> numbers) {
         if (numbers.size() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 6개여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 6개여야 합니다.");
         }
     }
 
     private static void validateNoDuplicate(List<Integer> numbers) {
         if (numbers.stream().distinct().count() != LOTTO_SIZE) {
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 중복될 수 없습니다.");
+            throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
         }
     }
 
     private static void validateNumberRange(List<Integer> numbers) {
         if(isOutOfRange(numbers)){
-            throw new IllegalArgumentException("[ERROR] 로또 번호는 1~45 사이여야 합니다.");
+            throw new IllegalArgumentException("로또 번호는 1~45 사이여야 합니다.");
         }
     }
 
