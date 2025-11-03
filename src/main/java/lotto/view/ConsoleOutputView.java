@@ -8,7 +8,6 @@ import lotto.dto.response.LottoPurchaseResponseDto;
 import lotto.dto.response.LottoResultDto;
 
 public class ConsoleOutputView implements OutputView {
-
     private static final String PURCHASE_RESULT_MESSAGE = "\n%d개를 구매했습니다.\n";
     private static final String LOTTO_PREFIX = "[";
     private static final String LOTTO_SUFFIX = "]";

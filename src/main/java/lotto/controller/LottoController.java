@@ -37,10 +37,7 @@ public class LottoController {
         WinningNumbers winningNumbers = inputBonusNumber(lotto);
         outputView.println();
 
-        LottoResult lottoResult = lottoResultService.calculateResult(winningNumbers, lottos);
-        double rateOfReturn = lottoResultService.calculateProfitRate(lottos, lottoResult);
-
-        outputView.printLottoResult(LottoResultDto.create(lottoResult, rateOfReturn));
+        calculateResult(winningNumbers, lottos);
     }
 
     private Lottos buyLottos() {
@@ -77,5 +74,11 @@ public class LottoController {
                 System.out.println("[ERROR] " + e.getMessage());
             }
         }
+    }
+
+    private void calculateResult(WinningNumbers winningNumbers, Lottos lottos) {
+        LottoResult lottoResult = lottoResultService.calculateResult(winningNumbers, lottos);
+        double rateOfReturn = lottoResultService.calculateProfitRate(lottos, lottoResult);
+        outputView.printLottoResult(LottoResultDto.create(lottoResult, rateOfReturn));
     }
 }
