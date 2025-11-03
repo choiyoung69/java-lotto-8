@@ -1,5 +1,7 @@
 package lotto.controller;
 
+import static lotto.utils.LottoConstants.LOTTO_ERROR_PREFIX;
+
 import java.util.List;
 import lotto.domain.Lotto;
 import lotto.domain.LottoResult;
@@ -49,7 +51,7 @@ public class LottoController {
                 outputView.printLottoPurchaseResult(lottoPurchaseDto);
                 return lottos;
             } catch (IllegalArgumentException | IllegalStateException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(LOTTO_ERROR_PREFIX + e.getMessage());
             }
         }
     }
@@ -60,7 +62,7 @@ public class LottoController {
                 List<Integer> parsedWinningNumbers = Parser.parseToIntegerList(inputView.inputWinningNumbers().winningNumbers());
                 return new Lotto(parsedWinningNumbers);
             } catch (IllegalArgumentException | IllegalStateException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(LOTTO_ERROR_PREFIX + e.getMessage());
             }
         }
     }
@@ -71,7 +73,7 @@ public class LottoController {
                 int bonusNumber = Parser.parseToInteger(inputView.inputBonusNumber().bonusNumber());
                 return WinningNumbers.create(lotto, bonusNumber);
             } catch (IllegalArgumentException | IllegalStateException e) {
-                System.out.println("[ERROR] " + e.getMessage());
+                System.out.println(LOTTO_ERROR_PREFIX + e.getMessage());
             }
         }
     }
