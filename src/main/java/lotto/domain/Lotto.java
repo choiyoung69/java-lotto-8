@@ -1,11 +1,13 @@
 package lotto.domain;
 
+import static lotto.utils.LottoConstants.LOTTO_NUMBER_MAX;
+import static lotto.utils.LottoConstants.LOTTO_NUMBER_MIN;
+import static lotto.utils.LottoConstants.LOTTO_SIZE;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class Lotto {
-
-    private static final int LOTTO_SIZE = 6;
 
     private final List<Integer> numbers;
 
@@ -56,7 +58,6 @@ public class Lotto {
 
     private static boolean isOutOfRange(List<Integer> numbers) {
         return numbers.stream()
-                .anyMatch(number -> number < 1 || number > 45);
+                .anyMatch(number -> number < LOTTO_NUMBER_MIN || number > LOTTO_NUMBER_MAX);
     }
-
 }

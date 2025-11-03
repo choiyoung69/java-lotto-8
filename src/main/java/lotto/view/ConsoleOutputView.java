@@ -16,6 +16,7 @@ public class ConsoleOutputView implements OutputView {
 
     private static final String WINNING_STATISTICS_HEADER = "당첨 통계\n";
     private static final String SEPARATOR = "---\n";
+    private static final String MONEY_FORMAT = "%,d";
     private static final String PROFIT_RATE_MESSAGE = "총 수익률은 %.1f%%입니다.\n";
     private static final String WINNING_RESULT_FORMAT = "%s (%s원) - %d개\n";
 
@@ -32,7 +33,7 @@ public class ConsoleOutputView implements OutputView {
                                 .collect(Collectors.joining(LOTTO_NUMBER_DELIMITER)))
                         .append(LOTTO_SUFFIX)
                         .append("\n"));
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
     @Override
@@ -49,13 +50,13 @@ public class ConsoleOutputView implements OutputView {
                     LottoRank rank = entry.getKey();
                     sb.append(String.format(WINNING_RESULT_FORMAT,
                             rank.getMessage(),
-                            String.format("%,d", rank.getPrize()),
+                            String.format(MONEY_FORMAT, rank.getPrize()),
                             entry.getValue()));
 
                 });
 
         sb.append(String.format(PROFIT_RATE_MESSAGE, lottoResultDto.rateOfReturn()));
-        System.out.println(sb.toString());
+        System.out.println(sb);
     }
 
     public void println() {

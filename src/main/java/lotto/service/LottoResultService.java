@@ -1,8 +1,9 @@
 package lotto.service;
 
+import static lotto.utils.LottoConstants.LOTTO_PRICE_UNIT;
+
 import java.util.Map;
 import java.util.stream.Collectors;
-import lotto.domain.LottoCount;
 import lotto.domain.LottoRank;
 import lotto.domain.LottoResult;
 import lotto.domain.Lottos;
@@ -24,6 +25,6 @@ public class LottoResultService {
 
     public double calculateProfitRate(Lottos lottos, LottoResult lottoResult) {
         long winningAmountSum = lottoResult.calculateTotalPrize();
-        return (double) winningAmountSum / (lottos.getLottos().size() * LottoCount.LOTTO_PRICE_UNIT) * 100;
+        return (double) winningAmountSum / (lottos.getLottos().size() * LOTTO_PRICE_UNIT) * 100;
     }
 }

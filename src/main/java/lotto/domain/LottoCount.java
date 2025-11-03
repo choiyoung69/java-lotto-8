@@ -1,8 +1,9 @@
 package lotto.domain;
 
+import static lotto.utils.LottoConstants.LOTTO_PRICE_UNIT;
+
 public class LottoCount {
 
-    public static final int LOTTO_PRICE_UNIT = 1000;
     private final int count;
 
     private LottoCount(int count) {
