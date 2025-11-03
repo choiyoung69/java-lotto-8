@@ -4,4 +4,5 @@ import lotto.dto.LottoAmountDto;
 
 public interface InputView {
     LottoAmountDto inputPurchaseAmount();
+    LottoWinningNumbersDto inputWinningNumbers();
 }
