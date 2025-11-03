@@ -52,7 +52,7 @@ public class WinningNumbersTest {
     @DisplayName("당첨 번호에 중복된 숫자가 있으면 예외가 발생한다.")
     @Test
     void 당첨_번호에_중복된_숫자가_있으면_예외가_발생한다() {
-        assertThatThrownBy(() -> WinningNumber.create(List.of(1, 2, 3, 4, 5, 5), 6))
+        assertThatThrownBy(() -> WinningNumbers.create(List.of(1, 2, 3, 4, 5, 5), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -78,7 +78,7 @@ public class WinningNumbersTest {
     @DisplayName("당첨 번호와 보너스 번호가 중복되면 예외가 발생한다.")
     @Test
     void 당첨번호와_보너스번호가에_중복되면_예외가_발생한다() {
-        assertThatThrownBy(() -> WinningNumber.create(List.of(1, 2, 3, 4, 5, 6), 6))
+        assertThatThrownBy(() -> WinningNumbers.create(List.of(1, 2, 3, 4, 5, 6), 6))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
