@@ -25,6 +25,7 @@ public class LottoResultService {
 
     public double calculateProfitRate(Lottos lottos, LottoResult lottoResult) {
         long winningAmountSum = lottoResult.calculateTotalPrize();
-        return (double) winningAmountSum / (lottos.getLottos().size() * LOTTO_PRICE_UNIT) * 100;
+        int amount = lottos.getLottosSize() * LOTTO_PRICE_UNIT;
+        return (double) winningAmountSum / amount * 100;
     }
 }
