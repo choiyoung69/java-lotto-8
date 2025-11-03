@@ -18,4 +18,8 @@ public class LottoResult {
                 .mapToLong(entry -> entry.getKey().getPrize() * entry.getValue())
                 .sum();
     }
+
+    public Map<LottoRank, Long> getLottoResult() {
+        return lottoResult;
+    }
 }
